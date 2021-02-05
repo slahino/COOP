@@ -1,32 +1,62 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
+  <div id="app" v-if="apiok">
     <router-view/>
   </div>
+  <div v-else>
+    Impossible to contact API.
+  </div>
 </template>
+<script>
+  export default {
+    data() {
+      return {
+        apiok: false
+      }
+    },
+    mounted() {
+      console.log("App is starting...")
+      api.get('ping').then(response => {
+        this.apiok=true;
+        console.log('App is working...');
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+        if(!this.$store.state.membre) {
+          if(this.$route.path != '/se-connecter' && this.$route.path != '/create-account') {
+            this.$store.commit('logOut');
+            this.$router.push('/se-connecter');
+          }
+        } else {
 
-#nav {
-  padding: 30px;
+          this.chargerMembres();
+          this.$bus.$on('charger-membres', this.chargerMembres);
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
+          this.chargerConversations();
+          this.$bus.$on('charger-conversations', this.chargerConversations);
+        }
+       /* else {
+            api.get('members/'+this.$store.state.membre.id+'/signedin').catch(error => {
+              console.log(response.data);
+            })
+          }*/
 
-    &.router-link-exact-active {
-      color: #42b983;
+      }).catch(error => {
+        console.log('App is not working.', error);
+      }).finally(() => {
+        this.chargementOk = true;
+      })
+    },
+    methods : {
+      chargerMembres() {
+        api.get('members').then(response => {
+          this.$store.commit('setMembres',response.data);
+        });
+      },
+      chargerConversations() {
+        api.get('channels').then(response => {
+          this.$store.commit('setConversations',response.data);
+        });
+      }
     }
   }
-}
+</script>
+<style>
 </style>
