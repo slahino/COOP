@@ -7,7 +7,7 @@
 				<h3>Create a Conversation</h3>
 
 				<form @submit.prevent="creerConversation">
-					<filedset>
+					<fieldset>
 						<label>Sujet</label>
 						<input v-model="topic" required type="text" placeholder="De quoi voulez-vous discuter?">
 
@@ -15,7 +15,7 @@
 						<input v-model="label" required type="text" placeholder="Quels sont les concepts abordés?">
 						<button>Create a Conversation</button>
 						<button type="button" @click="masquerFormulaire" class="button button-clear">Cancel</button>
-					</filedset>
+					</fieldset>
 				</form>
 			</section>
 		</div>

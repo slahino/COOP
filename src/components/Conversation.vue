@@ -7,12 +7,29 @@
 			<div class="column column-25 actions">
 				<router-link :to="{name:'Conversation',params:{id : conversation.id}}"
 				class="button">Oeil</router-link>
+
+				<button class="button button-outline" @click="deleteConversation" title="Delete">Delete
+				</button>
 			</div>
 	</div>
 </template>
 <script type="text/javascript">
 	export default {
-		props : ['conversation']
+		props : ['conversation'],
+		methods : {
+			deleteConversation() {
+				if(confirm('Voulez-vous supprimer la conversation ' +this.conversation.topic+ '?')) {
+
+				api.delete('channels/'+this.conversation.id).then(response => {
+					this.$bus.$emit('charger-conversations');
+				}).catch(error => {
+					console.log(error.response.data);
+				});	
+
+				}
+					
+			}
+		}
 	}
 </script>
 <style>

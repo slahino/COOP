@@ -1,27 +1,70 @@
 <template>
 	<div class="container" v-if="membre">
+		<div>
+			<router-link to='/membre'>
+				<span>Membres</span>
+			</router-link> > {{membre.fullname}}
+		</div>
 
-		<router-link to='/membre'><span>Retour</span></router-link>
-		<h1>{{membre.fulname}}</h1>
-		<p>Email : {{membre.email}}</p>
-		<p>Inscrit : {{membre.created_at}}</p>
-		Membre Profile
+		<h1>{{membre.fullname}}</h1>
+		<ul>
+			<li>Email : {{membre.email}}</li>
+			<li>Inscrit depuis le {{membre.created_at}}</li>
+		</ul>
+		<h2>Message</h2>
+		<div v-if="loading">
+			Chargement des messages, veuillez patienter...
+		</div>
+		<div v-else v-for="message in messagesTries">
+			{{message.message}}
+			{{message.created_at}}
+		</div>
 	</div>
 </template>
+
 <script type="text/javascript">
 	export default {
 	    data() {
 	      return {
-	        membre:false
+	        membre: false,
+	        messages : [],
+	        loading : true
 	      }
+	    },
+	    computed : {
+	    	messagesTries() {
+	    		function compare( a, b ) {
+	    			if ( a.created_at < b.created_at){
+	    				return 1;
+	    			}
+	    			if ( a.created_at > b.created_at){
+	    				return -1;
+	    			}
+	    			return 0;
+	    		}
+	    		return this.messages.sort(compare).slice(0,10);
+	    	}
 	    },
 	    mounted() {
 	    	if(this.$route.params.membre_id) {
 	    		this.membre = this.$store.getters.getMembre(this.$route.params.membre_id);
-	    		console.log(this.membre);
-	    		let d = new Date(this.membre.created_at)
 	    		let options = {weekday : 'long', year : 'numeric' , month: 'long', day: 'numeric'};
-	    		this.membre.created_at = d.toLocaleDateString('fr-FR', options);
+	    		this.membre.created_at = new Date(this.membre.created_at).toLocaleDateString('fr-FR', options);
+
+	    		let cpt=0;
+	    		this.$store.state.conversations.forEach(conversation => {
+	    			api.get('channels/'+conversation.id+'/posts').then(response => {
+	    				response.data.forEach(message => {
+	    					if(message.member_id == this.membre.id) {
+	    						this.messages.push(message);
+	    					}
+	    				})
+	    				cpt++;
+	    				if(this.$store.state.conversations.length === cpt) {
+	    					this.loading=false;
+	    				}
+	    			});
+	    		})
 	    	}
 	    }
 	}
