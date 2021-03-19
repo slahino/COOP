@@ -3,9 +3,10 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import axios from 'axios'
-
 import milligram from 'milligram'
+import md5 from 'crypto-js/md5'
 
+window.md5 = md5;
 window.api = axios.create({
   baseURL: 'https://allweb.fun/coop/api/',
   headers: { Authorization: '2b46aab36c9478efd8e854b9806dac4cadd6c249' }

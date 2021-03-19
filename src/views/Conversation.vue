@@ -1,36 +1,37 @@
 <template>
-	<body>
-		<Header/>
-	<div>
+<body>
+<Header/>
+<div>
 		<h1>{{conversation.topic}}</h1>
 		<h3>{{conversation.label}}</h3>
 
-		<div v-for="message in messages">
-			{{conversation.topic}}
-			{{message.message}}
+		<template v-for="message in messages">
+		<div>
+			<Message :message="message"></Message>
+ 		</div>
+		</template>
+
+		<div>
+		<form @submit.prevent="posterMessage">
+						<fieldset>
+							<input v-model="message" required type="text" placeholder="Votre Message...">
+							<button>Envoyer</button>
+						</fieldset>
+		</form>
 		</div>
-
-	<div>
-	<form @submit.prevent="posterMessage">
-					<fieldset>
-						<input v-model="message" required type="text" placeholder="Your Message...">
-
-						<button>Envoyer</button>
-					</fieldset>
-				</form>
-			</div>
-	</div>
-    	
-  	</body>
+</div>
+</body>
 </template>
 
 <script>
 
 	import Header from '@/components/Header.vue'
+	import Message from '@/components/Message.vue'
 
 	export default {
 		components: {
-			Header
+			Header,
+			Message
 		},
 		data() {
 			return {
@@ -49,6 +50,13 @@
 			}
 		},
 		methods : {
+ 			deleteMessage() {
+				if(confirm('Voulez-vous supprimer le message ?')) {
+					api.delete(`channels/${this.message.channel_id}/posts/${this.message.id}`).then(response => {
+						this.message = false;
+					});
+           		}			
+			},
 			chargerMessages() {
 				api.get('channels/'+this.conversation.id+'/posts').then(
 					response => {

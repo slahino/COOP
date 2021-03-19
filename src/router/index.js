@@ -16,7 +16,7 @@ const routes = [
     component: () => import('../views/Conversation.vue')
   },
   {
-    path: '/membre', 
+    path: '/membre/:membre_id', 
     name : 'Membre',       // Afficher un membre
     component: () => import('../views/Membre.vue')
   },

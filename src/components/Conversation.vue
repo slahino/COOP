@@ -37,7 +37,6 @@
 h2 {
 	margin: 0;
 	display :  inline-block;
-	font-weight: bold;
 }
 .column {
 	padding-bottom: 1em;

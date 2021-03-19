@@ -1,7 +1,7 @@
 <template>
 	<div>
-		<div id="overlay">
-			<div id="creer-conversation" v-if="afficher">
+		<div id="overlay" v-if="afficher">
+			<div id="creer-conversation">
 			 	<div class="popup">
 					<section>
 						<a class="close" href="#noWhere" @click="masquerFormulaire"><img alt="Fermer" title="Fermer la fenêtre" class="btn_close" src="https://img.icons8.com/plasticine/2x/close-window.png"></a>
