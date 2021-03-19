@@ -2,8 +2,8 @@
 	<body>
 		<Header/>
 		<h1>Liste des Membres</h1>
-    	
-    	<div class="membres">
+		
+		<div class="membres">
 			<template v-for="membres in $store.state.membres">
 				<Membres :membre="membres"/>
 			</template>	

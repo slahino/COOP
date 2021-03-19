@@ -1,17 +1,17 @@
 <template>
 	<div class="row">
-			<div class="column column-75">
-				<h2>{{conversation.topic}}</h2>
-				<h4>{{conversation.label}}</h4>
-			</div>
+		<div class="column column-75">
+			<h2>{{conversation.topic}}</h2>
+			<h4>{{conversation.label}}</h4>
+		</div>
 
-			<div class="column column-25 actions">
-				<router-link :to="{name:'Conversation',params:{id : conversation.id}}"
-				class="button">VOIR</router-link>
+		<div class="column column-25 actions">
+			<router-link :to="{name:'Conversation',params:{id : conversation.id}}"
+			class="button">VOIR</router-link>
 
-				<button class="button button-outline" @click="deleteConversation" title="Delete">RETIRER
-				</button>
-			</div>
+			<button class="button button-outline" @click="deleteConversation" title="Delete">RETIRER
+			</button>
+		</div>
 	</div>
 </template>
 <script type="text/javascript">
@@ -21,14 +21,14 @@
 			deleteConversation() {
 				if(confirm('Voulez-vous supprimer la conversation ' +this.conversation.topic+ '?')) {
 
-				api.delete('channels/'+this.conversation.id).then(response => {
-					this.$bus.$emit('charger-conversations');
-				}).catch(error => {
-					console.log(error.response.data);
-				});	
+					api.delete('channels/'+this.conversation.id).then(response => {
+						this.$bus.$emit('charger-conversations');
+					}).catch(error => {
+						console.log(error.response.data);
+					});	
 
 				}
-					
+				
 			}
 		}
 	}
@@ -52,3 +52,4 @@ button {
 	margin :  10px;
 }
 </style>
+

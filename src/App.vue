@@ -32,11 +32,6 @@
           this.chargerConversations();
           this.$bus.$on('charger-conversations', this.chargerConversations);
         }
-       /* else {
-            api.get('members/'+this.$store.state.membre.id+'/signedin').catch(error => {
-              console.log(response.data);
-            })
-          }*/
 
       }).catch(error => {
         console.log('App is not working.', error);

@@ -2,7 +2,7 @@
 	<div>
 		<div id="overlay" v-if="afficher">
 			<div id="creer-conversation">
-			 	<div class="popup">
+				<div class="popup">
 					<section>
 						<a class="close" href="#noWhere" @click="masquerFormulaire"><img alt="Fermer" title="Fermer la fenêtre" class="btn_close" src="https://img.icons8.com/plasticine/2x/close-window.png"></a>
 						
@@ -56,38 +56,38 @@
 </script>
 <style>
 #overlay{
-    display: none;
-    position: fixed;
-    top:0; right:0; bottom:0; left:0;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 1000;
-    
+	display: none;
+	position: fixed;
+	top:0; right:0; bottom:0; left:0;
+	background-color: rgba(0, 0, 0, 0.5);
+	z-index: 1000;
+	
 }
 #overlay:target{
-    display: block;
+	display: block;
 }
 .popup{
-    background: #fff;
-    padding: 20px;
-    border: 20px solid #ddd;
-    position: relative;
-    margin: 10% auto;
-    width: 40%;
-    box-shadow: 0px 0px 20px #000;
-    border-radius: 10px;
+	background: #fff;
+	padding: 20px;
+	border: 20px solid #ddd;
+	position: relative;
+	margin: 10% auto;
+	width: 40%;
+	box-shadow: 0px 0px 20px #000;
+	border-radius: 10px;
 }
 img.btn_close {
-    float: right;
-    margin: -55px -55px 0 0;
-    width : 60px;
+	float: right;
+	margin: -55px -55px 0 0;
+	width : 60px;
 }
 button.afficher a {
-color :  white;
+	color :  white;
 }
 
 button.afficher {
-border-radius :  0px;
-margin-left : 50px; 
-margin-bottom :  50px;
+	border-radius :  0px;
+	margin-left : 50px; 
+	margin-bottom :  50px;
 }
 </style>

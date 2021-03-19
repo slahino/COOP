@@ -1,27 +1,27 @@
 <template>
-<body>
-	<div class="scop">
-		<h1>CO'OP - CONNEXION</h1>
-		<form @submit.prevent="SeConnecter">
-			<!-- prevent pour pas que la page ne se recharge -->
-			<div>
-				<label>Adresse email</label>
-				<input v-model="email" required type="email" placeholder="Taper votre email...">
-			</div>
-			<div>
-				<label>Mot de passe</label>
-				<input v-model="password" required type="password" placeholder="Taper votre mot de passe...">
-			</div>
-			<div>
-				<button>Se Connecter</button>
-			</div>
+	<body>
+		<div class="scop">
+			<h1>CO'OP - CONNEXION</h1>
+			<form @submit.prevent="SeConnecter">
+				<!-- prevent pour pas que la page ne se recharge -->
+				<div>
+					<label>Adresse email</label>
+					<input v-model="email" required type="email" placeholder="Taper votre email...">
+				</div>
+				<div>
+					<label>Mot de passe</label>
+					<input v-model="password" required type="password" placeholder="Taper votre mot de passe...">
+				</div>
+				<div>
+					<button>Se Connecter</button>
+				</div>
 
-		</form>
-		<div>
-		Vous n'avez pas de compte?<router-link to='/inscription'><span> Inscrivez-vous.</span></router-link>
+			</form>
+			<div>
+				Vous n'avez pas de compte?<router-link to='/inscription'><span> Inscrivez-vous.</span></router-link>
+			</div>
 		</div>
-	</div>
-</body>	
+	</body>	
 </template>
 <script>
 	export default {
@@ -51,7 +51,7 @@
 <style>
 div.scop {
 	margin-top: 50vh; 
-  	transform: translateY(-50%);
+	transform: translateY(-50%);
 	width :  50%;
 	margin-right :  auto;
 	margin-left :  auto;
@@ -69,9 +69,9 @@ div.scop > h1{
 
 }
 span{
- color : #9b4dca;
+	color : #9b4dca;
 }
 span:hover{
- color : #606c76;
+	color : #606c76;
 }
 </style>
