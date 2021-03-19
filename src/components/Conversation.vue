@@ -1,14 +1,15 @@
 <template>
 	<div class="row">
-			<div class="column column-75"><h3>{{conversation.topic}}</h3>
-				{{conversation.label}}
+			<div class="column column-75">
+				<h2>{{conversation.topic}}</h2>
+				<h4>{{conversation.label}}</h4>
 			</div>
 
 			<div class="column column-25 actions">
 				<router-link :to="{name:'Conversation',params:{id : conversation.id}}"
-				class="button">Oeil</router-link>
+				class="button">VOIR</router-link>
 
-				<button class="button button-outline" @click="deleteConversation" title="Delete">Delete
+				<button class="button button-outline" @click="deleteConversation" title="Delete">RETIRER
 				</button>
 			</div>
 	</div>
@@ -33,9 +34,10 @@
 	}
 </script>
 <style>
-h3 {
+h2 {
 	margin: 0;
 	display :  inline-block;
+	font-weight: bold;
 }
 .column {
 	padding-bottom: 1em;
@@ -46,5 +48,8 @@ h3 {
 }
 .actions {
 	text-align: right;
+}
+button {
+	margin :  10px;
 }
 </style>

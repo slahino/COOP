@@ -1,71 +1,25 @@
 <template>
-	<div class="container" v-if="membre">
-		<div>
-			<router-link to='/membre'>
-				<span>Membres</span>
-			</router-link> > {{membre.fullname}}
+	<body>
+		<Header/>
+		<h1>Liste des Membres</h1>
+    	
+    	<div class="membres">
+			<template v-for="membres in $store.state.membres">
+				<Membres :membre="membres"/>
+			</template>	
 		</div>
-
-		<h1>{{membre.fullname}}</h1>
-		<ul>
-			<li>Email : {{membre.email}}</li>
-			<li>Inscrit depuis le {{membre.created_at}}</li>
-		</ul>
-		<h2>Message</h2>
-		<div v-if="loading">
-			Chargement des messages, veuillez patienter...
-		</div>
-		<div v-else v-for="message in messagesTries">
-			{{message.message}}
-			{{message.created_at}}
-		</div>
-	</div>
+	</body>
 </template>
 
-<script type="text/javascript">
-	export default {
-	    data() {
-	      return {
-	        membre: false,
-	        messages : [],
-	        loading : true
-	      }
-	    },
-	    computed : {
-	    	messagesTries() {
-	    		function compare( a, b ) {
-	    			if ( a.created_at < b.created_at){
-	    				return 1;
-	    			}
-	    			if ( a.created_at > b.created_at){
-	    				return -1;
-	    			}
-	    			return 0;
-	    		}
-	    		return this.messages.sort(compare).slice(0,10);
-	    	}
-	    },
-	    mounted() {
-	    	if(this.$route.params.membre_id) {
-	    		this.membre = this.$store.getters.getMembre(this.$route.params.membre_id);
-	    		let options = {weekday : 'long', year : 'numeric' , month: 'long', day: 'numeric'};
-	    		this.membre.created_at = new Date(this.membre.created_at).toLocaleDateString('fr-FR', options);
+<script>
 
-	    		let cpt=0;
-	    		this.$store.state.conversations.forEach(conversation => {
-	    			api.get('channels/'+conversation.id+'/posts').then(response => {
-	    				response.data.forEach(message => {
-	    					if(message.member_id == this.membre.id) {
-	    						this.messages.push(message);
-	    					}
-	    				})
-	    				cpt++;
-	    				if(this.$store.state.conversations.length === cpt) {
-	    					this.loading=false;
-	    				}
-	    			});
-	    		})
-	    	}
-	    }
+	import Membres from '@/components/Membres.vue'
+	import Header from '@/components/Header.vue'
+
+	export default {
+		components: {
+			Membres,
+			Header
+		}
 	}
 </script>

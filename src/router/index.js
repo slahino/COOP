@@ -17,11 +17,11 @@ const routes = [
   },
   {
     path: '/membre', 
-    name : 'Membre',       // Afficher les membres
+    name : 'Membre',       // Afficher un membre
     component: () => import('../views/Membre.vue')
   },
   {
-    path: '/membres',       // Afficher un membre
+    path: '/membres',       // Afficher des membres
     name : 'Membres',
     component: () => import('../views/Membres.vue')
   },
@@ -30,8 +30,8 @@ const routes = [
     component: () => import('../views/SeConnecter.vue')
   },
    {
-    path: '/create-account',
-    component: () => import('../views/CreateAccount.vue')
+    path: '/inscription',
+    component: () => import('../views/Inscription.vue')
   }
 ]
 

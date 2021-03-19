@@ -15,7 +15,7 @@ export default new Vuex.Store({
    token : false
   },
   mutations: {
-    logOut(state) {
+    deconnexion(state) {
       state.membre=false;
       state.token=false;
     },

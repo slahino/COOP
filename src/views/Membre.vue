@@ -1,18 +1,23 @@
 <template>
-<div class="container">
-	<router-link to='/'><span>Home</span></router-link>
-	<h1>Liste des Membres</h1>
-	<template v-for="membre in $store.state.membres">
-		<Membre :membre="membre"/>
-	</template>	
-</div>		
+	<body>
+		<Header/>
+
+    	<div class="membre">
+			
+				<Membre :membre="membre"/>
+		</div>
+	</body>
 </template>
-<script type="text/javascript">
+
+<script>
+
 	import Membre from '@/components/Membre.vue'
+	import Header from '@/components/Header.vue'
 
 	export default {
 		components: {
-			Membre
+			Membre,
+			Header
 		}
 	}
 </script>

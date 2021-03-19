@@ -20,8 +20,8 @@
         console.log('App is working...');
 
         if(!this.$store.state.membre) {
-          if(this.$route.path != '/se-connecter' && this.$route.path != '/create-account') {
-            this.$store.commit('logOut');
+          if(this.$route.path != '/se-connecter' && this.$route.path != '/inscription') {
+            this.$store.commit('deconnexion');
             this.$router.push('/se-connecter');
           }
         } else {

@@ -1,15 +1,12 @@
 <template>
-	<div class="container">
-		<div>
-			<router-link to='/'>
-				<span>Conversation</span>
-			</router-link> > {{conversation.topic}}
-		</div>
-
+	<body>
+		<Header/>
+	<div>
 		<h1>{{conversation.topic}}</h1>
 		<h3>{{conversation.label}}</h3>
 
 		<div v-for="message in messages">
+			{{conversation.topic}}
 			{{message.message}}
 		</div>
 
@@ -22,10 +19,19 @@
 					</fieldset>
 				</form>
 			</div>
-		</div>
+	</div>
+    	
+  	</body>
 </template>
+
 <script>
+
+	import Header from '@/components/Header.vue'
+
 	export default {
+		components: {
+			Header
+		},
 		data() {
 			return {
 				conversation:false,

@@ -1,24 +1,24 @@
 <template>
 <body>
 	<div class="scop">
-		<h1>CO'OP - Log in</h1>
+		<h1>CO'OP - CONNEXION</h1>
 		<form @submit.prevent="SeConnecter">
 			<!-- prevent pour pas que la page ne se recharge -->
 			<div>
-				<label>Mail</label>
-				<input v-model="email" required type="email" placeholder="Type your Mail...">
+				<label>Adresse email</label>
+				<input v-model="email" required type="email" placeholder="Taper votre email...">
 			</div>
 			<div>
-				<label>Password</label>
-				<input v-model="password" required type="password" placeholder="Type your Password...">
+				<label>Mot de passe</label>
+				<input v-model="password" required type="password" placeholder="Taper votre mot de passe...">
 			</div>
 			<div>
-				<button>Log in</button>
+				<button>Se Connecter</button>
 			</div>
 
 		</form>
 		<div>
-		You don't have an account,<router-link to='/create-account'><span> Sign In.</span></router-link>
+		Vous n'avez pas de compte?<router-link to='/inscription'><span> Inscrivez-vous.</span></router-link>
 		</div>
 	</div>
 </body>	
@@ -27,8 +27,8 @@
 	export default {
 		data() {
 			return {
-				email : 'azertyuiop@8520.com',
-				password : 'azertyuiop'
+				email : 'souaa.yassine@gmail.com',
+				password : 'CoopApplication83600.'
 			}
 		},
 		methods : {
@@ -49,9 +49,6 @@
 	}
 </script>
 <style>
-body {
-	background-color: beige;
-}
 div.scop {
 	margin-top: 50vh; 
   	transform: translateY(-50%);
@@ -65,16 +62,16 @@ div.scop {
 	background-color :  white;
 
 }
-span{
- color : #9b4dca;
-}
-span:hover{
- color : #606c76;
-}
 div.scop > h1{
 	color :  black;
 	font-weight: bold;
 	text-align: center;
 
+}
+span{
+ color : #9b4dca;
+}
+span:hover{
+ color : #606c76;
 }
 </style>

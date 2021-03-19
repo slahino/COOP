@@ -1,26 +1,26 @@
 <template>
 	<div>
-		<div id="creer-conversation" v-if="afficher">
-			<section>
-				<button class="close" 
-				@click="masquerFormulaire">x</button>
-				<h3>Create a Conversation</h3>
+		<div id="overlay">
+			<div id="creer-conversation" v-if="afficher">
+			 	<div class="popup">
+					<section>
+						<a class="close" href="#noWhere" @click="masquerFormulaire"><img alt="Fermer" title="Fermer la fenêtre" class="btn_close" src="https://img.icons8.com/plasticine/2x/close-window.png"></a>
+						
+						<form @submit.prevent="creerConversation">
+							<fieldset>
+								<label class="subject">Sujet</label>
+								<input v-model="topic" required type="text" placeholder="De quoi voulez-vous discuter?">
 
-				<form @submit.prevent="creerConversation">
-					<fieldset>
-						<label>Sujet</label>
-						<input v-model="topic" required type="text" placeholder="De quoi voulez-vous discuter?">
-
-						<label>Tags</label>
-						<input v-model="label" required type="text" placeholder="Quels sont les concepts abordés?">
-						<button>Create a Conversation</button>
-						<button type="button" @click="masquerFormulaire" class="button button-clear">Cancel</button>
-					</fieldset>
-				</form>
-			</section>
+								<label class="tags">Étiquettes</label>
+								<input v-model="label" required type="text" placeholder="Quels sont les concepts abordés?">
+								<button>Créer</button>
+							</fieldset>
+						</form>
+					</section>
+				</div>
+			</div>
 		</div>
-
-		<button @click="afficherFormulaire"> Crate a new Conversation</button>
+		<button class="afficher" @click="afficherFormulaire"><a class="overlay" href="#overlay">Créer une Conversation</a></button>
 	</div>
 </template>
 <script>
@@ -54,3 +54,40 @@
 		}
 	}
 </script>
+<style>
+#overlay{
+    display: none;
+    position: fixed;
+    top:0; right:0; bottom:0; left:0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    
+}
+#overlay:target{
+    display: block;
+}
+.popup{
+    background: #fff;
+    padding: 20px;
+    border: 20px solid #ddd;
+    position: relative;
+    margin: 10% auto;
+    width: 40%;
+    box-shadow: 0px 0px 20px #000;
+    border-radius: 10px;
+}
+img.btn_close {
+    float: right;
+    margin: -55px -55px 0 0;
+    width : 60px;
+}
+button.afficher a {
+color :  white;
+}
+
+button.afficher {
+border-radius :  0px;
+margin-left : 50px; 
+margin-bottom :  50px;
+}
+</style>
